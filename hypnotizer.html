@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
+  <title>Hypnotizer</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" rel="stylesheet" />
+  <link href="hypnotizer.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="btn-group buttons">
+    <a class="btn btn-lg btn-info" onclick="changeType()" accesskey="s"><span class="glyphicon glyphicon-font"></span> <span id="change-type">Digits & Letter</span><span style="text-decoration: underline">s</span></a>
+    <a class="btn btn-lg btn-info" onclick="changeCase()" accesskey="r"><span class="glyphicon glyphicon-sort"></span> <span id="change-case">Lower & Uppe</span><span style="text-decoration: underline">r</span>case</a>
+    <a class="btn btn-lg btn-info" onclick="changeColor()" accesskey="c"><span class="glyphicon glyphicon-refresh"></span> <span style="text-decoration: underline">C</span>hange color</a>
+  </div>
+  <canvas id="canvas">Your browser doesn't support HTML5.</canvas>
+  <script src="hypnotizer.js"></script>
+</body>
+
+</html>
