@@ -1,5 +1,17 @@
+/* global FPSMeter */
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let meter = new FPSMeter({
+  left: canvas.width - 130 + 'px',
+  top: 'auto',
+  bottom: '12px',
+  theme: 'colorful',
+  heat: 1,
+  graph: 1
+});
 
 let label = {
   height: 25,
@@ -19,6 +31,7 @@ draw();
 window.addEventListener('resize', resizeHandler);
 
 function draw () {
+  meter.tick();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = label.font;
   if (label.color !== label.colors.length) {
