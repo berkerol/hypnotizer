@@ -19,8 +19,8 @@ let label = {
   font: '25px Monospace',
   type: 2,
   case: 2,
-  color: 16,
-  colors: [[15, 15, 15], [240, 60, 80], [255, 100, 0], [255, 160, 0], [255, 220, 0], [220, 255, 0], [160, 255, 0], [50, 255, 0], [0, 220, 120], [130, 230, 220], [0, 220, 240], [240, 120, 255], [210, 140, 170], [220, 180, 240], [160, 220, 220], [200, 200, 200]]
+  color: 15,
+  colors: [[255, 30, 40], [255, 150, 20], [255, 220, 0], [0, 255, 100], [100, 255, 20], [50, 200, 200], [120, 220, 255], [80, 180, 255], [220, 120, 255], [255, 100, 150], [240, 20, 200], [140, 140, 140], [170, 170, 170], [200, 200, 200]]
 };
 
 let labels = [];
@@ -35,13 +35,11 @@ function draw () {
   meter.tick();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = label.font;
-  if (label.color !== label.colors.length) {
-    ctx.fillStyle = 'rgba(' + label.colors[label.color][0] + ',' + label.colors[label.color][1] + ',' + label.colors[label.color][2] + ',' + 1.0 + ')';
-  }
   for (let l of labels) {
-    if (label.color === label.colors.length) {
-      ctx.fillStyle = generateRandomColor();
+    if (label.color === label.colors.length + 2) {
+      l.color = generateRandomColor();
     }
+    ctx.fillStyle = 'rgba(' + l.color[0] + ',' + l.color[1] + ',' + l.color[2] + ',' + 1.0 + ')';
     ctx.fillText(String.fromCharCode(generateRandomLetter()), l.x, l.y);
   }
   window.requestAnimationFrame(draw);
@@ -82,7 +80,7 @@ function generateRandomLetter () {
 }
 
 function generateRandomColor () {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  return label.colors[Math.floor(Math.random() * label.colors.length)];
 }
 
 function changeType () {
@@ -115,13 +113,24 @@ function changeCase () {
   }
 }
 
-function changeColor () {
-  if (label.color === label.colors.length) {
-    label.color = 0;
+$('.dropdown-menu li a').click(function () {
+  $('#selected').text($(this).text());
+  label.color = $(this).closest('li').data('value');
+  if (label.color === label.colors.length + 2 || label.color === label.colors.length + 1) {
+    for (let l of labels) {
+      l.color = generateRandomColor();
+    }
+  } else if (label.color === label.colors.length) {
+    let color = generateRandomColor();
+    for (let l of labels) {
+      l.color = color;
+    }
   } else {
-    label.color++;
+    for (let l of labels) {
+      l.color = label.colors[label.color];
+    }
   }
-}
+});
 
 function resizeHandler () {
   canvas.width = window.innerWidth;
@@ -134,5 +143,8 @@ function resizeHandler () {
         y: j * label.height
       });
     }
+  }
+  for (let l of labels) {
+    l.color = generateRandomColor();
   }
 }
