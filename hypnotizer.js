@@ -39,7 +39,7 @@ function draw () {
     if (label.color === label.colors.length + 2) {
       l.color = generateRandomColor();
     }
-    ctx.fillStyle = 'rgba(' + l.color[0] + ',' + l.color[1] + ',' + l.color[2] + ',' + 1.0 + ')';
+    ctx.fillStyle = `rgba(${l.color[0]}, ${l.color[1]}, ${l.color[2]}, 1.0)`;
     ctx.fillText(String.fromCharCode(generateRandomLetter()), l.x, l.y);
   }
   window.requestAnimationFrame(draw);
