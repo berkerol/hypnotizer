@@ -1,11 +1,11 @@
 /* global FPSMeter */
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 FPSMeter.theme.colorful.container.height = '40px';
-let meter = new FPSMeter({
+const meter = new FPSMeter({
   left: canvas.width - 130 + 'px',
   top: 'auto',
   bottom: '12px',
@@ -14,7 +14,7 @@ let meter = new FPSMeter({
   graph: 1
 });
 
-let label = {
+const label = {
   height: 25,
   font: '25px Monospace',
   type: 2,
@@ -26,7 +26,7 @@ let label = {
 let labels = [];
 
 ctx.font = label.font;
-let metrics = ctx.measureText('0');
+const metrics = ctx.measureText('0');
 resizeHandler();
 draw();
 window.addEventListener('resize', resizeHandler);
@@ -35,7 +35,7 @@ function draw () {
   meter.tick();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = label.font;
-  for (let l of labels) {
+  for (const l of labels) {
     if (label.color === label.colors.length + 2) {
       l.color = generateRandomColor();
     }
@@ -117,16 +117,16 @@ $('.dropdown-menu li a').click(function () {
   $('#selected').text($(this).text());
   label.color = $(this).closest('li').data('value');
   if (label.color === label.colors.length + 2 || label.color === label.colors.length + 1) {
-    for (let l of labels) {
+    for (const l of labels) {
       l.color = generateRandomColor();
     }
   } else if (label.color === label.colors.length) {
-    let color = generateRandomColor();
-    for (let l of labels) {
+    const color = generateRandomColor();
+    for (const l of labels) {
       l.color = color;
     }
   } else {
-    for (let l of labels) {
+    for (const l of labels) {
       l.color = label.colors[label.color];
     }
   }
@@ -144,7 +144,7 @@ function resizeHandler () {
       });
     }
   }
-  for (let l of labels) {
+  for (const l of labels) {
     l.color = generateRandomColor();
   }
 }
