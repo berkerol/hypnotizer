@@ -1,4 +1,4 @@
-/* global FPSMeter */
+/* global $ FPSMeter */
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -83,7 +83,7 @@ function generateRandomColor () {
   return label.colors[Math.floor(Math.random() * label.colors.length)];
 }
 
-function changeType () {
+window.changeType = function () {
   if (label.type === 2) {
     label.type = 0;
   } else {
@@ -96,9 +96,9 @@ function changeType () {
   } else {
     document.getElementById('change-type').innerHTML = 'Digits & Letter';
   }
-}
+};
 
-function changeCase () {
+window.changeCase = function () {
   if (label.case === 2) {
     label.case = 0;
   } else {
@@ -111,7 +111,7 @@ function changeCase () {
   } else {
     document.getElementById('change-case').innerHTML = 'Lower & Uppe';
   }
-}
+};
 
 $('.dropdown-menu li a').click(function () {
   $('#selected').text($(this).text());
