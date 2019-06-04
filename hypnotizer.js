@@ -19,8 +19,8 @@ const label = {
   font: '25px Monospace',
   type: 2,
   case: 2,
-  color: 15,
-  colors: [[255, 30, 40], [255, 150, 20], [255, 220, 0], [0, 255, 100], [100, 255, 20], [50, 200, 200], [120, 220, 255], [80, 180, 255], [220, 120, 255], [255, 100, 150], [240, 20, 200], [140, 140, 140], [170, 170, 170], [200, 200, 200]]
+  color: 16,
+  colors: [[255, 30, 40], [255, 150, 20], [255, 220, 0], [0, 255, 100], [100, 255, 20], [50, 200, 200], [120, 220, 255], [80, 180, 255], [220, 120, 255], [255, 100, 150], [240, 20, 200], [140, 140, 140], [170, 170, 170], [200, 200, 200], [255, 0, 0]]
 };
 
 let labels = [];
@@ -29,6 +29,9 @@ ctx.font = label.font;
 const metrics = ctx.measureText('0');
 resizeHandler();
 draw();
+document.getElementById('customColor').addEventListener('change', function () {
+  label.colors[label.colors.length - 1] = this.value.match(/[A-Za-z0-9]{2}/g).map(v => parseInt(v, 16));
+});
 window.addEventListener('resize', resizeHandler);
 
 function draw () {
@@ -80,7 +83,7 @@ function generateRandomLetter () {
 }
 
 function generateRandomColor () {
-  return label.colors[Math.floor(Math.random() * label.colors.length)];
+  return label.colors[Math.floor(Math.random() * (label.colors.length - 1))];
 }
 
 window.changeType = function () {
