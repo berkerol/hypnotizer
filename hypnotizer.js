@@ -116,9 +116,9 @@ window.changeCase = function () {
   }
 };
 
-$('.dropdown-menu li a').click(function () {
+$('.dropdown-item').click(function () {
   $('#selected').text($(this).text());
-  label.color = $(this).closest('li').data('value');
+  label.color = $(this).closest('.dropdown-item').data('value');
   if (label.color === label.colors.length + 2 || label.color === label.colors.length + 1) {
     for (const l of labels) {
       l.color = generateRandomColor();
