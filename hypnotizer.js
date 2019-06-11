@@ -1,4 +1,4 @@
-/* global $ FPSMeter */
+/* global FPSMeter */
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -29,6 +29,26 @@ ctx.font = label.font;
 const metrics = ctx.measureText('0');
 resizeHandler();
 draw();
+document.querySelectorAll('.dropdown-item').forEach(e => {
+  e.addEventListener('click', function () {
+    document.getElementById('selected').innerText = this.innerText;
+    label.color = +this.dataset.value;
+    if (label.color === label.colors.length + 2 || label.color === label.colors.length + 1) {
+      for (const l of labels) {
+        l.color = generateRandomColor();
+      }
+    } else if (label.color === label.colors.length) {
+      const color = generateRandomColor();
+      for (const l of labels) {
+        l.color = color;
+      }
+    } else {
+      for (const l of labels) {
+        l.color = label.colors[label.color];
+      }
+    }
+  });
+});
 document.getElementById('customColor').addEventListener('change', function () {
   label.colors[label.colors.length - 1] = this.value.match(/[A-Za-z0-9]{2}/g).map(v => parseInt(v, 16));
 });
@@ -115,25 +135,6 @@ window.changeCase = function () {
     document.getElementById('change-case').innerHTML = 'Lower & Uppe';
   }
 };
-
-$('.dropdown-item').click(function () {
-  $('#selected').text($(this).text());
-  label.color = $(this).closest('.dropdown-item').data('value');
-  if (label.color === label.colors.length + 2 || label.color === label.colors.length + 1) {
-    for (const l of labels) {
-      l.color = generateRandomColor();
-    }
-  } else if (label.color === label.colors.length) {
-    const color = generateRandomColor();
-    for (const l of labels) {
-      l.color = color;
-    }
-  } else {
-    for (const l of labels) {
-      l.color = label.colors[label.color];
-    }
-  }
-});
 
 function resizeHandler () {
   canvas.width = window.innerWidth;
