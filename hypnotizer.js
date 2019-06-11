@@ -29,9 +29,21 @@ ctx.font = label.font;
 const metrics = ctx.measureText('0');
 resizeHandler();
 draw();
-document.querySelectorAll('.dropdown-item').forEach(e => {
+document.querySelectorAll('#change-type .dropdown-item').forEach(e => {
   e.addEventListener('click', function () {
-    document.getElementById('selected').innerText = this.innerText;
+    document.getElementById('change-type-text').innerHTML = this.innerHTML.substring(0, this.innerHTML.length - 1);
+    label.type = +this.dataset.value;
+  });
+});
+document.querySelectorAll('#change-case .dropdown-item').forEach(e => {
+  e.addEventListener('click', function () {
+    document.getElementById('change-case-text').innerHTML = this.innerHTML.substring(0, this.innerHTML.length - 5);
+    label.case = +this.dataset.value;
+  });
+});
+document.querySelectorAll('#change-color .dropdown-item').forEach(e => {
+  e.addEventListener('click', function () {
+    document.getElementById('change-color-text').innerText = this.innerText;
     label.color = +this.dataset.value;
     if (label.color === label.colors.length + 2 || label.color === label.colors.length + 1) {
       for (const l of labels) {
@@ -105,36 +117,6 @@ function generateRandomLetter () {
 function generateRandomColor () {
   return label.colors[Math.floor(Math.random() * (label.colors.length - 1))];
 }
-
-window.changeType = function () {
-  if (label.type === 2) {
-    label.type = 0;
-  } else {
-    label.type++;
-  }
-  if (label.type === 0) {
-    document.getElementById('change-type').innerHTML = 'Digit';
-  } else if (label.type === 1) {
-    document.getElementById('change-type').innerHTML = 'Letter';
-  } else {
-    document.getElementById('change-type').innerHTML = 'Digits & Letter';
-  }
-};
-
-window.changeCase = function () {
-  if (label.case === 2) {
-    label.case = 0;
-  } else {
-    label.case++;
-  }
-  if (label.case === 0) {
-    document.getElementById('change-case').innerHTML = 'Lowe';
-  } else if (label.case === 1) {
-    document.getElementById('change-case').innerHTML = 'Uppe';
-  } else {
-    document.getElementById('change-case').innerHTML = 'Lower & Uppe';
-  }
-};
 
 function resizeHandler () {
   canvas.width = window.innerWidth;

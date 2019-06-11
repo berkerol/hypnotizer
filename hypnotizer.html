@@ -12,11 +12,25 @@
 
 <body>
   <div class="btn-group btn-group-lg btn-group-center">
-    <button type="button" class="btn btn-info" onclick="changeType()" accesskey="s"><i class="fas fa-font"></i> <span id="change-type">Digits & Letter</span><span style="text-decoration: underline">s</span></button>
-    <button type="button" class="btn btn-info" onclick="changeCase()" accesskey="r"><i class="fas fa-sort"></i> <span id="change-case">Lower & Uppe</span><span style="text-decoration: underline">r</span>case</button>
     <div class="btn-group btn-group-lg">
-      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" accesskey="c"><i class="fas fa-sync"></i> <span id="selected"><span style="text-decoration: underline">C</span>hange color</span></button>
-      <div class="dropdown-menu">
+      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" accesskey="s"><i class="fas fa-font"></i> <span id="change-type-text">Digits & Letter</span><u>s</u></button>
+      <div class="dropdown-menu" id="change-type">
+        <button type="button" class="dropdown-item" data-value="0">Digits</button>
+        <button type="button" class="dropdown-item" data-value="1">Letters</button>
+        <button type="button" class="dropdown-item" data-value="2">Digits & Letters</button>
+      </div>
+    </div>
+    <div class="btn-group btn-group-lg">
+      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" accesskey="r"><i class="fas fa-sort"></i> <span id="change-case-text">Lower & Uppe</span><u>r</u>case</button>
+      <div class="dropdown-menu" id="change-case">
+        <button type="button" class="dropdown-item" data-value="0">Lowercase</button>
+        <button type="button" class="dropdown-item" data-value="1">Uppercase</button>
+        <button type="button" class="dropdown-item" data-value="2">Lower & Uppercase</button>
+      </div>
+    </div>
+    <div class="btn-group btn-group-lg">
+      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" accesskey="c"><i class="fas fa-palette"></i> <span id="change-color-text"><u>C</u>hange color</span></button>
+      <div class="dropdown-menu" id="change-color">
         <button type="button" class="dropdown-item" data-value="0">Red</button>
         <button type="button" class="dropdown-item" data-value="1">Orange</button>
         <button type="button" class="dropdown-item" data-value="2">Yellow</button>
