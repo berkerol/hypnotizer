@@ -4,6 +4,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+let animation;
 FPSMeter.theme.colorful.container.height = '40px';
 const meter = new FPSMeter({
   left: canvas.width - 130 + 'px',
@@ -64,6 +65,7 @@ document.querySelectorAll('#change-color .dropdown-item').forEach(e => {
 document.getElementById('customColor').addEventListener('change', function () {
   label.colors[label.colors.length - 1] = this.value.match(/[A-Za-z0-9]{2}/g).map(v => parseInt(v, 16));
 });
+document.addEventListener('keyup', keyUpHandler);
 window.addEventListener('resize', resizeHandler);
 
 function draw () {
@@ -77,7 +79,7 @@ function draw () {
     ctx.fillStyle = `rgb(${l.color[0]}, ${l.color[1]}, ${l.color[2]})`;
     ctx.fillText(String.fromCharCode(generateRandomLetter()), l.x, l.y);
   }
-  window.requestAnimationFrame(draw);
+  animation = window.requestAnimationFrame(draw);
 }
 
 function generateRandomLetter () {
@@ -116,6 +118,17 @@ function generateRandomLetter () {
 
 function generateRandomColor () {
   return label.colors[Math.floor(Math.random() * (label.colors.length - 1))];
+}
+
+function keyUpHandler (e) {
+  if (e.keyCode === 80) {
+    if (animation === undefined) {
+      animation = window.requestAnimationFrame(draw);
+    } else {
+      window.cancelAnimationFrame(animation);
+      animation = undefined;
+    }
+  }
 }
 
 function resizeHandler () {
