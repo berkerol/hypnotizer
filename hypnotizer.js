@@ -93,41 +93,35 @@ function draw () {
       l.color = generateRandomColor();
     }
     ctx.fillStyle = `rgb(${l.color[0]}, ${l.color[1]}, ${l.color[2]})`;
-    ctx.fillText(String.fromCharCode(generateRandomLetter()), l.x, l.y);
+    ctx.fillText(String.fromCharCode(generateRandomCharacter()), l.x, l.y);
   }
   animation = window.requestAnimationFrame(draw);
 }
 
-function generateRandomLetter () {
+function generateRandomCharacter () {
   if (label.type === 0) {
     return Math.floor(Math.random() * 9 + 48);
   } else if (label.type === 1) {
-    if (label.case === 0) {
-      return Math.floor(Math.random() * 25 + 97);
-    } else if (label.case === 1) {
-      return Math.floor(Math.random() * 25 + 65);
-    } else {
-      if (Math.random() < 0.5) {
-        return Math.floor(Math.random() * 25 + 97);
-      } else {
-        return Math.floor(Math.random() * 25 + 65);
-      }
-    }
+    return generateRandomLetter();
   } else {
     if (Math.random() < 0.5) {
       return Math.floor(Math.random() * 9 + 48);
     } else {
-      if (label.case === 0) {
-        return Math.floor(Math.random() * 25 + 97);
-      } else if (label.case === 1) {
-        return Math.floor(Math.random() * 25 + 65);
-      } else {
-        if (Math.random() < 0.5) {
-          return Math.floor(Math.random() * 25 + 97);
-        } else {
-          return Math.floor(Math.random() * 25 + 65);
-        }
-      }
+      return generateRandomLetter();
+    }
+  }
+}
+
+function generateRandomLetter () {
+  if (label.case === 0) {
+    return Math.floor(Math.random() * 25 + 97);
+  } else if (label.case === 1) {
+    return Math.floor(Math.random() * 25 + 65);
+  } else {
+    if (Math.random() < 0.5) {
+      return Math.floor(Math.random() * 25 + 97);
+    } else {
+      return Math.floor(Math.random() * 25 + 65);
     }
   }
 }
