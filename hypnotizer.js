@@ -12,13 +12,13 @@ resizeHandler();
 document.querySelectorAll('#change-type .dropdown-item').forEach(e => {
   e.addEventListener('click', function () {
     document.getElementById('change-type-text').innerHTML = this.innerHTML.substring(0, this.innerHTML.length - 1);
-    label.type = +this.dataset.value;
+    label.type = +this.dataset.bsValue;
   });
 });
 document.querySelectorAll('#change-case .dropdown-item').forEach(e => {
   e.addEventListener('click', function () {
     document.getElementById('change-case-text').innerHTML = this.innerHTML.substring(0, this.innerHTML.length - 5);
-    label.case = +this.dataset.value;
+    label.case = +this.dataset.bsValue;
   });
 });
 addDropdownListener(labels);
